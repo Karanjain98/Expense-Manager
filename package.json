@@ -1,5 +1,4 @@
-{
-  "name": "ex-man",
+{"name": "ex-man",
   "version": "1.0.0",
   "description": "expense manager web app",
   "main": "server.js",

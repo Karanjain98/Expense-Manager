@@ -10,7 +10,7 @@ exports.signup = function(req, res){
       var email=post.email;
 if(pass!=pass2)
 {
-   message="Passwords do not match";
+   message="Passwords do not match!!";
    res.render('index.ejs',{message: message});
 }
 if(name=='')

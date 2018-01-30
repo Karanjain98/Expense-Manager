@@ -34,7 +34,7 @@ CREATE TABLE `expense_detail` (
   `amount` int(12) NOT NULL,
   `expense_detail` varchar(255) NOT NULL,
   `time` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB ;
 
 --
 -- Dumping data for table `expense_detail`
