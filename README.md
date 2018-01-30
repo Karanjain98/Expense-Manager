@@ -18,7 +18,7 @@ A simple to use Expense Manager for comparing your budget and monthly expenses.
 
 5. Open Brower and visit http://localhost:8080/
 
-![Alt text](https://github.com/Karanjain98/Expense-Manager/images/1?raw=true "SIGN UP")
+![Alt text](https://github.com/Karanjain98/Expense-Manager/images/1.png?raw=true "SIGN UP")
 
 
 
