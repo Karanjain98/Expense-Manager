@@ -1,0 +1,193 @@
+<html lang="en">
+<%- include header %>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DASHBOARD</title>
+  <link rel="stylesheet" href="https://unpkg.com/js-datepicker/datepicker.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://unpkg.com/js-datepicker"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+  function validateData(){
+    
+  var a=$("#amount").val();
+  if(a=="")
+  {
+    alert("please fill the details");
+    return false;
+  }
+  else
+    {    document.forms["account_add"].submit();
+      
+    }
+  }
+</script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-default" style="background :#009999;border-width: 5px;border-color:white; ">
+      <div class="container-fluid">
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active" style="font-style:italic; font-size:20px;padding: 5px">WELCOME <%= user.username %> </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/home/logout" method="get" style="color:white;">Logout</a></li>
+          </ul>
+        </div><!--/.nav-collapse-->
+      </div><!--/.container-fluid -->
+    </nav>
+    <div class="container-fluid bg-4 text-center">
+    <div class="col-sm-4">
+    <form action="/add" method="post" name="account_add">
+        <div>
+            <p style="float: left">AMOUNT : <input type="number" name="amount" id="amount"></p>
+        </div>
+        <div>
+            <p style="float: left">Details : <input type="text" name="detail" id="detail" style="margin-left: 16px"></p>
+        </div>
+        <div>
+            <p style="float: left">Date: <input type="text" id="datepicker" name="date" style="margin-left: 32px"></p>
+            <script type="text/javascript">
+              const picker = datepicker('#datepicker');           
+               </script>
+        </div>
+        <div>
+            <input type="hidden" name="userId" value="<%= user.id %>"/>
+        </div>
+        <div>
+            <input type="hidden" name="username" value="<%= user.username %>"/>
+            <input type="hidden" name="action" value="add"/>
+        </div>
+ 
+        <div>
+           <div class="col-md-3 col-sm-3 col-xs-6" name="add" onClick="javascript:validateData()"> <a href="#" class="btn btn-sm animated-button thar-four">ADD</a> </div>
+            <style type="text/css">
+              a.animated-button.thar-four {
+  color: #009999;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  border: 2px solid #009999;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+0s;
+}
+a.animated-button.thar-four:hover {
+  color:#009999 !important;
+  background-color: transparent;
+  text-shadow: nfour;
+}
+a.animated-button.thar-four:hover:before {
+  right: 0%;
+  left: auto;
+  width: 100%;
+}
+a.animated-button.thar-four:before {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 0px;
+  z-index: -1;
+  content: '';
+  color:#009999 !important;
+  background: white;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);}
+#yo:hover {
+  color:#009999 !important;
+  background-color: transparent;
+  text-shadow: nfour;
+}
+#yo:hover:before {
+  right: 0%;
+  left: auto;
+  width: 100%;
+}
+#yo:before {
+  display: block;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 0px;
+  z-index: -1;
+  content: '';
+  color:#009999 !important;
+  background: white;
+  transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+
+}
+            </style>
+        </div>
+    </form>
+     </div>
+
+
+     <div class="col-sm-4" >
+        <div class="well well-lg" style="border-width: 5px;border-color:#009999;margin-left: 20px">
+        <h1 style="font-size: 35px;float:right;" >TOTAL EXPENSES</h1><i class="fa fa-rupee"><span style="font-size: 20px"> <%= total %></span></i>
+      </div>
+
+
+      
+     </div>
+     </div>
+
+     </div>
+         </div>
+
+<div class="container-fluid bg-4 text-center">
+</div>
+<table class="table">
+    <thead>
+      <tr>  
+        <th>
+          <div class="well well-sm" style="background :#009999;border-width: 5px;border-color:white; text-align: center">
+             <p>   DATE OF PAYMENT  </p>
+          </div>
+        </th>
+        <th>
+          <div class="well well-sm" style="background :#009999;border-width: 5px;border-color:white; text-align: center">
+             <p>  AMOUNT PAID   </p>
+          </div>
+        </th>
+        <th>
+          <div class="well well-sm" style="background:#009999; border-width: 5px;border-color:white; text-align: center;">
+             <p>   DETAILS OF PAYMENT   </p>
+          </div>
+        </th>
+        <th>
+          <div class="well well-sm" style="background :#009999;border-width: 5px;border-color:white; text-align: center">
+             <p>DELETE?</p>
+          </div>
+       </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% for(var i=0;i<list.length;i++) { %>
+      <form method="post" action="/add">
+      
+     <tr>
+             <input type="hidden" name="action" value="delete"/>
+       <input type="hidden" name="username" value="<%= user.username %>"/>
+       <input type="hidden" name="userId" value="<%= user.id %>"/>
+      <input name="time" type="hidden" value="<%= list[i].time %>" /> <td><%= list[i].time %> </td> 
+      <input name="amount" type="hidden" value="<%= list[i].amount %>" /><td><i class="fa fa-rupee"></i><%=list[i].amount %></td>                     
+     <input name="detail" type="hidden" value="<%= list[i].expense_detail %>" /> <td><%= list[i].expense_detail %></td>
+      <td><input type="checkbox" name="check" value="yes" /><button formaction="/add" type="submit" id="top"> Remove </button>
+      </td>
+     
+    </tr>
+
+      </form> 
+            <%}%>
+  
+</body>
+
+</html>
+<%- include footer %>
